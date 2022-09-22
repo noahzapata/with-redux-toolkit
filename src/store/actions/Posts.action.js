@@ -1,24 +1,25 @@
-import axios from "axios"
+import axios from 'axios';
 
 import {
   POSTS_SUCCESS,
   POSTS_LOADING,
-  POSTS_ERROR
-} from "../reducers/Posts.reducer"
+  POSTS_ERROR,
+} from '../reducers/Posts.reducer';
 
 //action creator
 export const getPosts = () => {
   return (dispatch) => {
-    dispatch({ type: POSTS_LOADING, payload: true })
-    axios.get("https://jsonplaceholder.typicode.com/todos/")
+    dispatch({ type: POSTS_LOADING, payload: true });
+    axios
+      .get('https://jsonplaceholder.typicode.com/todos/')
       .then((res) => {
-        dispatch({ type: POSTS_SUCCESS, payload: res.data })
+        dispatch({ type: POSTS_SUCCESS, payload: res.data });
       })
       .catch((error) => {
-        dispatch({ type: POSTS_ERROR, payload: error })
+        dispatch({ type: POSTS_ERROR, payload: error });
       })
       .finally(() => {
-        dispatch({ type: POSTS_LOADING, payload: false })
-      })
-  }
-}
+        dispatch({ type: POSTS_LOADING, payload: false });
+      });
+  };
+};

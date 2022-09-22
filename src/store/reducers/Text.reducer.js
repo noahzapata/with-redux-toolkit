@@ -1,28 +1,27 @@
-const CHANGE_TEXT = "CHANGE_TEXT"
+import { createSlice } from '@reduxjs/toolkit';
+
+const initialState = {
+  username: '',
+};
+
+const textSlice = createSlice({
+  name: 'text',
+  initialState,
+  reducers: {
+    CHANGE_TEXT(state, action) {
+      state.username = action.payload;
+    },
+  },
+});
+
+export const { CHANGE_TEXT } = textSlice.actions;
 
 //action creator
 export const changeText = (value) => {
-
   return {
     type: CHANGE_TEXT,
-    payload: value
-  }
-}
+    payload: value,
+  };
+};
 
-const initialState = {
-  username: ""
-}
-
-const textReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case CHANGE_TEXT:
-      return {
-        ...state,
-        username: action.payload
-      }
-    default:
-      return state
-  }
-}
-
-export default textReducer
+export default textSlice.reducer;
